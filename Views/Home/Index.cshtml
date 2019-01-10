@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model List<ElasticCacheSample.Models.Items>
+    <h2>Datasource: @ViewBag.Source</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr><th>Item id</th><th>Item name</th><th>Description</th><th>Price</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<form method="post" action="/Home/FlushCache?">
+    <input type="submit" value="Clear Cache" />
+    @Html.Hidden("key", "listitems")
+</form>
